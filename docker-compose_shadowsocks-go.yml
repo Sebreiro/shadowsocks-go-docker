@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  shadowsocks_server:
+    image: sebreiro/shadowsocks-go:latest
+    container_name: shadowsocks_server
+    restart: unless-stopped
+    command: shadowsocks-server
+    volumes:
+      - /etc/shadowsocks:/etc/shadowsocks
+    ports:
+      - 8387:8387
+      - 8388:8388
+    networks:
+      - default
+
+  shadowsocks_client:
+    image: sebreiro/shadowsocks-go:latest
+    container_name: shadowsocks_client
+    restart: unless-stopped
+    command: shadowsocks-local
+    volumes:
+      - /etc/shadowsocks:/etc/shadowsocks
+    ports:
+      - 8387:8387
+      - 8388:8388
+    networks:
+      - default
+      
+networks:
+  default:
+    driver: bridge
