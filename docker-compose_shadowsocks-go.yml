@@ -12,7 +12,11 @@ services:
       - 8387:8387
       - 8388:8388
     networks:
-      - default
+      - ss_server
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
 
   shadowsocks_client:
     image: sebreiro/shadowsocks-go:latest
@@ -25,8 +29,16 @@ services:
       - 8387:8387
       - 8388:8388
     networks:
-      - default
+      - ss_client
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
       
 networks:
-  default:
+  ss_server:
     driver: bridge
+    name: ss_server
+  ss_client:
+    driver: bridge
+    name: ss_client
