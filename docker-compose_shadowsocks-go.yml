@@ -5,12 +5,14 @@ services:
     image: sebreiro/shadowsocks-go:latest
     container_name: shadowsocks_server
     restart: unless-stopped
-    command: shadowsocks-server
+    command: shadowsocks-server -u
     volumes:
       - /etc/shadowsocks:/etc/shadowsocks
     ports:
       - 8387:8387
+      - 8387:8387/udp
       - 8388:8388
+      - 8388:8388/udp
     networks:
       - ss_server
     logging:
