@@ -2,7 +2,7 @@ version: '2'
 
 services:
   shadowsocks_server:
-    image: sebreiro/shadowsocks-go:latest
+    image: sebreiro/shadowsocks-go-docker:1.2.1
     container_name: shadowsocks_server
     restart: unless-stopped
     command: shadowsocks-server -u
@@ -21,7 +21,7 @@ services:
         max-size: "10m"
 
   shadowsocks_client:
-    image: sebreiro/shadowsocks-go:latest
+    image: sebreiro/shadowsocks-go-docker:1.2.1
     container_name: shadowsocks_client
     restart: unless-stopped
     command: shadowsocks-local
